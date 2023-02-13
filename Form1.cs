@@ -12,8 +12,7 @@ namespace clip_manager
 {
     public partial class Form1 : Form
     {
-        //private ResourceManager icons = new ResourceManager(typeof(Icons));
-        private readonly ResourceManager configFile = new ResourceManager(typeof(Config));
+        //private readonly ResourceManager configFile = new ResourceManager(typeof(Config));
         private readonly Icon workingIcon = Icons.working;
         private readonly Icon stopIcon = Icons.stop;
         private bool isWork = true;
@@ -100,8 +99,10 @@ namespace clip_manager
             // 控件初始化
             notifyIcon1.Icon = workingIcon;
             // 读取config
-            string t_classname = configFile.GetString("target_classname").Replace("\r", "");
-            string t_title = configFile.GetString("target_title").Replace("\r", "");
+            //string t_classname = configFile.GetString("target_classname").Replace("\r", "");
+            //string t_title = configFile.GetString("target_title").Replace("\r", "");
+            string t_classname = System.IO.File.ReadAllText(@"Configs\target_classname.txt").Replace("\r","");
+            string t_title = System.IO.File.ReadAllText(@"Configs\target_title.txt").Replace("\r", "");
             string[] list_classname = t_classname.Split('\n');
             string[] list_title = t_title.Split('\n');
             Dictionary<string, string[]> target_dict = new Dictionary<string, string[]>
